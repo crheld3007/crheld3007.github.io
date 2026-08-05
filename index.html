@@ -1,501 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Held &amp; Todd Group, AI Diagnostic Consultancy</title>
-<meta name="description" content="Held &amp; Todd Group diagnoses whether an AI investment will actually solve your problem before you commit budget to it.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23141B22'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial' font-size='15' font-weight='700' fill='%2317796B' text-anchor='middle'%3EHT%3C/text%3E%3C/svg%3E">
+<title>Held &amp; Todd Group — AI Diagnostic Consultancy</title>
+<meta name="description" content="We diagnose whether an AI investment will actually solve your problem, before you commit budget to it.">
+
+<!-- ============================================================
+     LINK PREVIEW (iMessage / LinkedIn / Slack / SMS)
+     Without og:image, Apple grabs the first large image on the
+     page — which was Charlie's headshot. og-image.png fixes it.
+     ============================================================ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Held &amp; Todd Group">
+<meta property="og:url" content="https://heldtoddgroup.com/">
+<meta property="og:title" content="Held &amp; Todd Group">
+<meta property="og:description" content="AI diagnostic consultancy. We tell you whether AI solves your problem before you spend on it.">
+<meta property="og:image" content="https://heldtoddgroup.com/og-image.png">
+<meta property="og:image:secure_url" content="https://heldtoddgroup.com/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Held &amp; Todd Group">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Held &amp; Todd Group">
+<meta name="twitter:description" content="AI diagnostic consultancy. We tell you whether AI solves your problem before you spend on it.">
+<meta name="twitter:image" content="https://heldtoddgroup.com/og-image.png">
+<link rel="canonical" href="https://heldtoddgroup.com/">
+
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="logo-mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#26403A">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --ink:#141B22;
-  --ink-2:#1B242E;
-  --ink-3:#2A3641;
-  --slate:#5A6873;
-  --bone:#F1F1EC;
-  --bone-2:#E3E4DC;
-  --line:#D2D3CB;
-  --line-dark:#31404C;
-  --signal:#17796B;
-  --signal-lift:#2AA08D;
-  --oxide:#A8452C;
-  --amber:#B08428;
+  /* Indiana limestone + graphite + a diagnostic instrument palette.
+     Deliberately not the navy-and-gold consultancy default. */
+  --stone:      #E9E6DF;
+  --stone-2:    #DFDBD2;
+  --stone-hi:   #F3F1EC;
+  --graphite:   #1A1D1C;
+  --ink-soft:   #5C625E;
+  --brand:      #26403A;
+  --brand-hi:   #35564E;
+  --poor:       #9E4636;
+  --mid:        #B2802F;
+  --good:       #2E6B5E;
+  --rule:       rgba(26,29,28,0.13);
+  --rule-hard:  rgba(26,29,28,0.28);
 
-  --display:'Archivo',system-ui,sans-serif;
-  --body:'Source Serif 4',Georgia,serif;
-  --mono:'IBM Plex Mono',ui-monospace,monospace;
-
-  --pad:clamp(1.25rem,5vw,4.5rem);
-  --maxw:1160px;
-  --nav-h:54px;
+  --f-display: 'Instrument Serif', Georgia, serif;
+  --f-body:    'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --f-mono:    'IBM Plex Mono', ui-monospace, monospace;
 }
 
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-  margin:0;
-  background:var(--bone);
-  color:var(--ink);
-  font-family:var(--body);
-  font-size:clamp(1.02rem,.35vw + .95rem,1.14rem);
-  line-height:1.62;
+  background:var(--stone);
+  color:var(--graphite);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
-img{max-width:100%;display:block}
-a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding:0 32px}
 
-.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
-
+/* ---------- utility type ---------- */
 .eyebrow{
-  font-family:var(--mono);
-  font-size:.7rem;
-  font-weight:500;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--signal);
-  margin:0 0 1.4rem;
-  display:flex;align-items:center;gap:.75rem;
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-soft);
 }
-.eyebrow::after{content:"";flex:1;height:1px;background:var(--line);max-width:140px}
-.on-ink .eyebrow{color:var(--signal-lift)}
-.on-ink .eyebrow::after{background:var(--line-dark)}
-
-h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.028em;line-height:1.06;margin:0}
-h2{font-size:clamp(1.9rem,3.6vw,2.9rem);margin-bottom:1.1rem}
-h3{font-size:1.12rem;letter-spacing:-.012em;line-height:1.25}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;letter-spacing:-0.005em;line-height:1.12;color:var(--graphite)}
 
 /* ---------- nav ---------- */
-.nav{
-  background:var(--ink);color:var(--bone);
+nav{
   position:sticky;top:0;z-index:50;
-  border-bottom:1px solid var(--line-dark);
+  background:rgba(233,230,223,.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
 }
-.nav-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1.05rem}
-.mark{font-family:var(--display);font-weight:800;font-size:.98rem;letter-spacing:-.01em;text-decoration:none}
-.mark span{color:var(--signal-lift)}
-.nav-links{display:flex;gap:1.9rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase}
-.nav-links a{text-decoration:none;color:#AEB8C0;padding-block:.2rem;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
-.nav-links a:hover,.nav-links a:focus-visible{color:var(--bone);border-color:var(--signal-lift)}
-@media(max-width:680px){.nav-links{gap:1.1rem;font-size:.66rem}}
-@media(max-width:430px){.nav-links a[data-opt]{display:none}}
+.nav-in{max-width:1000px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brandlock{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brandlock img{height:30px;width:auto;flex-shrink:0;display:block}
+.brandlock .bl-name{font-family:var(--f-display);font-size:1.12rem;color:var(--graphite);white-space:nowrap}
+.navlinks{display:flex;gap:26px}
+.navlinks a{
+  font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent;
+}
+.navlinks a:hover,.navlinks a:focus-visible{color:var(--graphite);border-bottom-color:var(--graphite)}
 
-/* ---------- title screen ---------- */
-.titlescreen{
-  background:var(--ink);color:var(--bone);
-  min-height:calc(100vh - var(--nav-h));
-  min-height:calc(100svh - var(--nav-h));
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;
-  padding-block:clamp(2.5rem,8vw,5rem) clamp(5rem,11vw,8rem);
+/* ---------- hero: deliberately few words ---------- */
+.hero{
+  min-height:78vh;display:flex;flex-direction:column;justify-content:center;
+  padding:70px 0 54px;border-bottom:1px solid var(--rule);
 }
-@media(max-width:600px){
-  .titlescreen{padding-bottom:4.25rem}
-  .scroll-cue{bottom:1.5rem}
-}
-.titlescreen > .wrap{width:100%}
+.hero-mark{height:88px;width:auto;display:block;margin-bottom:30px}
+.hero h1{font-size:clamp(2.9rem,7vw,4.9rem);margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--brand)}
+.hero-line{font-size:1.12rem;color:var(--ink-soft);max-width:430px;margin-bottom:34px}
+.hero-meta{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+.hero-meta .eyebrow{display:flex;align-items:center;gap:8px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--good);display:inline-block}
 
-.masthead{
-  font-family:var(--display);font-weight:800;
-  font-size:clamp(2.5rem,10vw,7.2rem);
-  letter-spacing:-.02em;line-height:.94;
-  margin:0;color:var(--bone);
-}
-.masthead span{color:var(--signal-lift)}
-.masthead-foot{
-  margin:clamp(1.7rem,3.5vw,2.5rem) 0 0;
-  border-top:1px solid var(--line-dark);
-  padding-top:clamp(1.25rem,2.5vw,1.75rem);
-  font-family:var(--mono);font-size:.68rem;font-weight:500;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--slate);
-}
-
-.scroll-cue{
-  position:absolute;left:var(--pad);bottom:clamp(1.9rem,4.5vw,3rem);
-  display:flex;align-items:center;gap:.85rem;
-  font-family:var(--mono);font-size:.64rem;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;
-  color:var(--slate);text-decoration:none;transition:color .2s;
-}
-.scroll-cue:hover,.scroll-cue:focus-visible{color:var(--signal-lift)}
-@keyframes cueBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-.scroll-cue svg{animation:cueBob 2.4s ease-in-out infinite}
-@media(prefers-reduced-motion:reduce){.scroll-cue svg{animation:none}}
-
-/* ---------- certainty screen (second) ---------- */
-.certainty-section{border-top:1px solid var(--line-dark)}
-.hero-grid{display:grid;grid-template-columns:1.35fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:end}
-@media(max-width:900px){.hero-grid{grid-template-columns:1fr;align-items:start}}
-
-.certainty{
-  font-family:var(--display);font-weight:800;
-  font-size:clamp(2.9rem,8.5vw,5.6rem);
-  letter-spacing:.02em;line-height:1;
-  margin:0 0 1.5rem;
-}
-.certainty em{font-style:normal;color:var(--signal-lift)}
-.hero-rule{height:1px;background:var(--line-dark);margin:0 0 1.6rem}
-.hero-h{
-  font-family:var(--display);font-size:clamp(1.55rem,3.1vw,2.35rem);
-  font-weight:600;letter-spacing:-.022em;line-height:1.16;
-  margin:0 0 1.35rem;max-width:22ch;
-}
-.certainty-section p{color:#B9C3CB;margin:0 0 1.1rem;max-width:52ch}
-.certainty-section p strong{color:var(--bone);font-weight:600}
-
-.hero-side{border-left:1px solid var(--line-dark);padding-left:clamp(1.25rem,2.5vw,2rem)}
-@media(max-width:900px){.hero-side{border-left:0;border-top:1px solid var(--line-dark);padding-left:0;padding-top:1.75rem}}
-.hero-side .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--slate);margin-bottom:.5rem}
-.hero-side p{font-size:.97rem;color:#AEB8C0;margin:0 0 1.5rem}
-
-.cta{
-  display:inline-block;font-family:var(--mono);font-size:.74rem;font-weight:500;
-  letter-spacing:.13em;text-transform:uppercase;text-decoration:none;
-  color:var(--ink);background:var(--signal-lift);
-  padding:.85rem 1.5rem;border:1px solid var(--signal-lift);
-  transition:background .18s,color .18s;
-}
-.cta:hover,.cta:focus-visible{background:transparent;color:var(--signal-lift)}
+/* calibration rule — the instrument motif */
+.calib{display:flex;align-items:flex-end;gap:5px;height:20px;margin-top:44px;opacity:.5}
+.calib i{width:1px;background:var(--rule-hard);height:7px}
+.calib i:nth-child(5n+1){height:15px}
 
 /* ---------- sections ---------- */
-.section{padding-block:clamp(3.5rem,7vw,6rem)}
-.section--ink{background:var(--ink);color:var(--bone)}
-.section--bone2{background:var(--bone-2)}
+section{padding:76px 0;border-bottom:1px solid var(--rule)}
+.sec-head{margin-bottom:38px;max-width:620px}
+.sec-head .eyebrow{margin-bottom:14px;display:block}
+.sec-head h2{font-size:clamp(1.85rem,3.6vw,2.6rem);margin-bottom:16px}
+.sec-head p{color:var(--ink-soft);font-size:1.02rem}
 
-.lede{font-size:clamp(1.14rem,1.5vw,1.32rem);line-height:1.5;max-width:34ch;font-weight:600;letter-spacing:-.008em}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);margin-top:2.25rem}
-@media(max-width:820px){.cols{grid-template-columns:1fr;gap:1.4rem}}
-.cols p{margin:0 0 1.05rem}
-.cols p:last-child{margin-bottom:0}
-.cols p strong{font-weight:600;color:var(--ink)}
-.muted{color:var(--slate)}
-.on-ink .muted{color:#A4B0B9}
+/* ---------- accordion (shared) ---------- */
+.acc{border-top:1px solid var(--rule)}
+.acc-item{border-bottom:1px solid var(--rule)}
+.acc-btn{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:18px;padding:21px 2px;
+  font-family:var(--f-body);color:var(--graphite);
+}
+.acc-btn:hover .acc-title{color:var(--brand)}
+.acc-btn:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+.acc-idx{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-soft);flex-shrink:0;width:20px}
+.acc-title{flex:1;font-size:1.06rem;font-weight:500;line-height:1.4}
+.acc-sign{position:relative;width:13px;height:13px;flex-shrink:0}
+.acc-sign::before,.acc-sign::after{
+  content:'';position:absolute;background:var(--brand);transition:transform .3s cubic-bezier(.4,0,.2,1)
+}
+.acc-sign::before{top:6px;left:0;width:13px;height:1.5px}
+.acc-sign::after{left:6px;top:0;width:1.5px;height:13px}
+.acc-item[data-open="true"] .acc-sign::after{transform:rotate(90deg)}
+.acc-panel{overflow:hidden;height:0;transition:height .32s cubic-bezier(.4,0,.2,1)}
+.acc-inner{padding:0 0 26px 38px;max-width:640px;color:var(--ink-soft);font-size:.99rem}
+.acc-inner p+p{margin-top:13px}
+.acc-inner strong{color:var(--graphite);font-weight:600}
 
-/* ---------- diagnostic scale (signature) ---------- */
-.plot{
-  margin:2.75rem 0 3.25rem;
-  border-top:1px solid var(--line-dark);
-  border-bottom:1px solid var(--line-dark);
-  padding:2.4rem 0 5.5rem;
+/* ---------- the diagnostic gauge (signature element) ---------- */
+.gauge{margin:14px 0 40px}
+.gauge-scale{
+  display:flex;justify-content:space-between;
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:13px;
 }
-.plot-head{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--slate);margin-bottom:2.9rem}
-.axis{position:relative;height:2px;background:linear-gradient(90deg,var(--oxide) 0%,var(--amber) 50%,var(--signal-lift) 100%);opacity:.55}
-.tick{position:absolute;top:50%;transform:translate(-50%,-50%);}
-.dot{
-  width:13px;height:13px;border-radius:50%;background:var(--ink);
-  border:2px solid currentColor;margin:0 auto;
-  box-shadow:0 0 0 5px var(--ink);
+.gauge-track{position:relative;height:52px}
+.gauge-line{
+  position:absolute;top:24px;left:0;right:0;height:3px;border-radius:2px;
+  background:linear-gradient(90deg,var(--poor) 0%,var(--mid) 50%,var(--good) 100%);
 }
-.tick-label{
-  position:absolute;left:50%;transform:translateX(-50%);
-  width:max-content;max-width:26ch;text-align:center;
+.gauge-ticks{position:absolute;top:31px;left:0;right:0;display:flex;justify-content:space-between}
+.gauge-ticks i{width:1px;height:6px;background:var(--rule-hard)}
+.gnode{
+  position:absolute;top:14px;transform:translateX(-50%);
+  width:23px;height:23px;border-radius:50%;cursor:pointer;
+  border:3px solid var(--stone);background:var(--graphite);
+  transition:transform .2s ease,box-shadow .2s ease;padding:0;
 }
-.tick--up .tick-label{bottom:22px}
-.tick--down .tick-label{top:22px}
-.tick-name{font-family:var(--display);font-weight:700;font-size:.94rem;letter-spacing:-.01em;color:var(--bone);white-space:nowrap}
-.tick-read{font-family:var(--mono);font-size:.63rem;letter-spacing:.11em;text-transform:uppercase;margin-top:.3rem;color:currentColor}
-.t-fail{color:var(--oxide)}
-.t-mid{color:var(--amber)}
-.t-win{color:var(--signal-lift)}
+.gnode:hover,.gnode:focus-visible{transform:translateX(-50%) scale(1.22);outline:none}
+.gnode[data-active="true"]{box-shadow:0 0 0 4px rgba(38,64,58,.22)}
+.gnode.n-poor{background:var(--poor)}
+.gnode.n-mid{background:var(--mid)}
+.gnode.n-good{background:var(--good)}
 
-/* animated settle */
-.axis .tick{opacity:0;transition:opacity .5s ease, left .9s cubic-bezier(.22,.85,.3,1)}
-.plot.is-in .tick{opacity:1}
-@media(prefers-reduced-motion:reduce){
-  .axis .tick{transition:none;opacity:1}
+/* case rows */
+.case-tag{
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);display:block;margin-bottom:3px;
 }
-
-.plot-rows{display:none}
-@media(max-width:760px){
-  .axis,.plot-head{display:none}
-  .plot{padding-top:1.4rem}
-  .plot-rows{display:grid;gap:1.35rem}
-  .prow-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.45rem}
-  .prow-name{font-family:var(--display);font-weight:700;font-size:1rem}
-  .prow-read{font-family:var(--mono);font-size:.6rem;letter-spacing:.11em;text-transform:uppercase}
-  .prow-bar{height:3px;background:var(--ink-3)}
-  .prow-fill{height:3px;background:currentColor}
+.swatch{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.sw-poor{background:var(--poor)}.sw-mid{background:var(--mid)}.sw-good{background:var(--good)}
+.metric{
+  font-family:var(--f-mono);font-size:.74rem;color:var(--ink-soft);
+  white-space:nowrap;flex-shrink:0;
 }
+@media(max-width:620px){.metric{display:none}}
 
-/* ---------- cases ---------- */
-.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.25rem,2.5vw,2.25rem)}
-@media(max-width:880px){.cases{grid-template-columns:1fr;gap:2rem}}
-.case{border-top:2px solid currentColor;padding-top:1.1rem}
-.case-k{font-family:var(--mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:.6rem;color:currentColor}
-.case h3{color:var(--bone);margin-bottom:.7rem}
-.case p{font-size:.97rem;line-height:1.58;color:#A4B0B9;margin:0}
 .takeaway{
-  margin-top:clamp(2.25rem,4vw,3.25rem);
-  border-left:2px solid var(--signal-lift);
-  padding:.15rem 0 .15rem 1.35rem;
-  max-width:62ch;
+  margin-top:34px;padding:26px 28px;background:var(--stone-hi);
+  border-left:2px solid var(--brand);max-width:660px;
 }
-.takeaway p{margin:0;color:#C4CDD4}
+.takeaway p{color:var(--ink-soft);font-size:.99rem}
+.takeaway strong{color:var(--graphite);font-weight:600}
 
 /* ---------- team ---------- */
-.team{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3.25rem);margin-top:2.5rem}
-@media(max-width:760px){.team{grid-template-columns:1fr;gap:2.5rem}}
-.person img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 18%;filter:grayscale(1) contrast(1.04);background:var(--bone-2)}
-.person-name{font-family:var(--display);font-weight:700;font-size:1.28rem;letter-spacing:-.02em;margin:1.1rem 0 .18rem}
-.person-role{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin-bottom:.85rem}
-.person p{font-size:.97rem;line-height:1.57;margin:0 0 .9rem}
-.creds{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);padding-top:.85rem}
-.creds li{font-family:var(--mono);font-size:.7rem;letter-spacing:.03em;color:var(--slate);padding:.28rem 0 .28rem 1rem;position:relative}
-.creds li::before{content:"";position:absolute;left:0;top:.82em;width:5px;height:1px;background:var(--signal)}
+.team-photo{
+  width:60px;height:60px;border-radius:50%;object-fit:cover;
+  filter:grayscale(1) contrast(1.04);flex-shrink:0;background:var(--stone-2);
+}
+.creds{list-style:none;margin-top:15px;border-top:1px solid var(--rule);padding-top:13px}
+.creds li{
+  font-family:var(--f-mono);font-size:.76rem;color:var(--ink-soft);
+  padding:5px 0 5px 15px;position:relative;line-height:1.5;
+}
+.creds li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:1px;background:var(--rule-hard)}
 
 /* ---------- contact ---------- */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3.25rem);margin-top:2.25rem}
-@media(max-width:700px){.contact-grid{grid-template-columns:1fr;gap:1.75rem}}
-.card{border:1px solid var(--line-dark);padding:clamp(1.35rem,2.5vw,1.9rem)}
-.card .who{font-family:var(--display);font-weight:700;font-size:1.06rem;margin-bottom:.9rem;color:var(--bone)}
-.card a{
-  display:block;font-family:var(--mono);font-size:.79rem;letter-spacing:.02em;
-  color:#AEB8C0;text-decoration:none;padding:.36rem 0;
-  border-bottom:1px solid transparent;width:fit-content;
-  transition:color .18s,border-color .18s;overflow-wrap:anywhere;
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
+.card{background:var(--stone-hi);border:1px solid var(--rule);padding:26px}
+.card h3{font-size:1.2rem;margin-bottom:3px}
+.card .role{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:15px}
+.card a{display:block;color:var(--brand);text-decoration:none;font-size:.93rem;padding:3px 0;word-break:break-word}
+.card a:hover{text-decoration:underline}
+
+footer{padding:40px 0 60px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+footer .eyebrow{line-height:1.8}
+
+/* ---------- scroll reveal ---------- */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .acc-panel{transition:none}
+  .gnode{transition:none}
 }
-.card a:hover,.card a:focus-visible{color:var(--signal-lift);border-color:var(--signal-lift)}
 
-.foot{border-top:1px solid var(--line-dark);margin-top:clamp(2.5rem,5vw,4rem);padding-top:1.5rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.foot p{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin:0}
-
-:focus-visible{outline:2px solid var(--signal-lift);outline-offset:3px}
+@media(max-width:760px){
+  .wrap,.nav-in{padding-left:22px;padding-right:22px}
+  .navlinks{gap:15px}
+  .navlinks a{font-size:.65rem;letter-spacing:.08em}
+  .brandlock .bl-name{display:none}
+  section{padding:58px 0}
+  .contact-grid{grid-template-columns:1fr}
+  .acc-inner{padding-left:0}
+}
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="wrap nav-in">
-    <a class="mark" href="#top">HELD &amp; TODD <span>GROUP</span></a>
-    <div class="nav-links">
+<nav>
+  <div class="nav-in">
+    <a href="#top" class="brandlock" aria-label="Held and Todd Group, home">
+      <img class="ht-mark" src="logo-mark.svg" alt="" width="26" height="30">
+      <span class="bl-name">Held &amp; Todd</span>
+    </a>
+    <div class="navlinks">
       <a href="#approach">Approach</a>
-      <a href="#evidence" data-opt>Evidence</a>
+      <a href="#evidence">Evidence</a>
       <a href="#team">Team</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
 
-<header class="titlescreen on-ink" id="top">
-  <div class="wrap">
-    <p class="eyebrow">AI Diagnostic Consultancy</p>
-    <h1 class="masthead">Held &amp; Todd<br>Group</h1>
-    <p class="masthead-foot">Indianapolis, Indiana</p>
+<header class="hero wrap" id="top">
+  <img class="hero-mark" src="logo-mark.svg" alt="Held and Todd Group">
+
+  <h1>Held &amp; Todd<br><em>Group</em></h1>
+  <p class="hero-line">We tell you whether AI solves your problem — before you spend on it.</p>
+
+  <div class="hero-meta">
+    <span class="eyebrow">Indianapolis, Indiana</span>
+    <span class="eyebrow"><span class="dot"></span> Taking first engagements</span>
   </div>
-  <a class="scroll-cue" href="#certainty">
-    <span>Scroll</span>
-    <svg width="12" height="21" viewBox="0 0 12 21" fill="none" aria-hidden="true">
-      <path d="M6 0v18.5M1 13.5l5 5 5-5" stroke="currentColor" stroke-width="1.4"/>
-    </svg>
-  </a>
+
+  <div class="calib" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
 </header>
 
-<section class="section section--ink on-ink certainty-section" id="certainty">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="certainty"><em>CERTAINTY</em></div>
-      <div class="hero-rule"></div>
-      <h2 class="hero-h">Most AI investments fail before a line of code is written.</h2>
-      <p>They fail at the diagnosis. The wrong problem gets chosen, or the wrong tool gets pointed at the right one.</p>
-      <p><strong>We do the diagnosis first.</strong> Before you commit budget, we tell you whether AI actually solves the problem in front of you, which problem is worth solving, and what it would take to be confident in the answer.</p>
-    </div>
-    <div class="hero-side">
-      <p class="k">Who we work with</p>
-      <p>Real estate operators, property managers, and owner-operated businesses that don't have an internal technology team, and can't afford to absorb the cost of finding out an AI tool doesn't work.</p>
-      <a class="cta" href="#contact">Start a conversation</a>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="approach">
+<!-- ================= APPROACH ================= -->
+<section id="approach">
   <div class="wrap">
-    <p class="eyebrow">Approach</p>
-    <h2>Diagnosis before deployment</h2>
-    <p class="lede">The hard part of AI adoption isn't access to tools. It's knowing which problem to point them at.</p>
-    <div class="cols">
-      <div>
-        <p>Most firms can buy any AI product on the market tomorrow. What they can't buy is the time and internal expertise to evaluate which one is worth the risk, sorting a genuine operational fit from a well-marketed demo.</p>
-        <p>That evaluation work is expensive precisely because it's invisible. It shows up as months of a manager's attention, a pilot that quietly stalls, and a team that becomes harder to convince the next time around.</p>
-      </div>
-      <div>
-        <p>We take on that work. We start by mapping where time, cost, and error actually accumulate in your operation, not where a vendor says they do. Then we identify whether AI is the right instrument for any of it, and where it plainly isn't.</p>
-        <p class="muted">Sometimes the honest answer is that the problem is a process problem, and no model will fix it. We'd rather tell you that early than sell you a project.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--ink on-ink" id="evidence">
-  <div class="wrap">
-    <p class="eyebrow">Evidence</p>
-    <h2>Same technology. Very different outcomes.</h2>
-    <p class="lede" style="color:#C4CDD4">Three public deployments, plotted by how well the problem was diagnosed before the tool was built.</p>
-
-    <div class="plot" id="plot">
-      <div class="plot-head"><span>Poorly diagnosed</span><span>Well diagnosed</span></div>
-      <div class="axis">
-        <div class="tick tick--down t-fail" style="left:8%">
-          <div class="tick-label">
-            <div class="tick-name">Zillow Offers</div>
-            <div class="tick-read">$500M+ write-down</div>
-          </div>
-          <div class="dot"></div>
-        </div>
-        <div class="tick tick--up t-mid" style="left:52%">
-          <div class="tick-label">
-            <div class="tick-name">Klarna</div>
-            <div class="tick-read">Gains, then a walk-back</div>
-          </div>
-          <div class="dot"></div>
-        </div>
-        <div class="tick tick--down t-win" style="left:90%">
-          <div class="tick-label">
-            <div class="tick-name">Morgan Stanley</div>
-            <div class="tick-read">98% adoption</div>
-          </div>
-          <div class="dot"></div>
-        </div>
-      </div>
-
-      <div class="plot-rows">
-        <div class="prow t-fail">
-          <div class="prow-top"><span class="prow-name">Zillow Offers</span><span class="prow-read">$500M+ write-down</span></div>
-          <div class="prow-bar"><div class="prow-fill" style="width:8%"></div></div>
-        </div>
-        <div class="prow t-mid">
-          <div class="prow-top"><span class="prow-name">Klarna</span><span class="prow-read">Gains, then a walk-back</span></div>
-          <div class="prow-bar"><div class="prow-fill" style="width:52%"></div></div>
-        </div>
-        <div class="prow t-win">
-          <div class="prow-top"><span class="prow-name">Morgan Stanley</span><span class="prow-read">98% adoption</span></div>
-          <div class="prow-bar"><div class="prow-fill" style="width:90%"></div></div>
-        </div>
-      </div>
+    <div class="sec-head rv">
+      <span class="eyebrow">01 — Approach</span>
+      <h2>Most AI investments fail before a line of code is written.</h2>
+      <p>They fail at the diagnosis. We do that part first.</p>
     </div>
 
-    <div class="cases">
-      <article class="case t-fail">
-        <p class="case-k">When AI skips the diagnosis</p>
-        <h3>Zillow Offers</h3>
-        <p>In 2021 Zillow shut down its AI-powered home-buying arm after its pricing model systematically overestimated home values, leading to a write-down of more than $500 million and significant layoffs. The model was sophisticated. The failure was strategic. It was scaled before anyone stress-tested the assumptions underneath it, in a market moving faster than it could adapt.</p>
-      </article>
-      <article class="case t-mid">
-        <p class="case-k">Right tool, wrong scope</p>
-        <h3>Klarna</h3>
-        <p>Klarna's AI support assistant handled 2.3 million chats in its first month, cut average resolution time from roughly 11 minutes to 2, and drove a reported 25% drop in repeat contacts. Real gains. But by 2025 the company acknowledged it had leaned too far on cost, saw quality slip, and began rehiring human agents. Strong technology, scoped past the point where it fit.</p>
-      </article>
-      <article class="case t-win">
-        <p class="case-k">Narrow problem, compounding return</p>
-        <h3>Morgan Stanley</h3>
-        <p>Morgan Stanley pointed AI at one well-defined task: letting advisors search the firm's own research library in plain language. Document retrieval efficiency moved from roughly 20% to 80%, a companion tool now saves advisors about half an hour per client meeting, and adoption passed 98% of advisor teams, because a human still reviews everything that reaches a client.</p>
-      </article>
-    </div>
-
-    <div class="takeaway">
-      <p>The technology across these three cases was broadly comparable. The outcomes were not. What separated them was whether the problem was diagnosed properly before the tool was built: narrow and well-defined, broad and cost-driven, or barely diagnosed at all. That diagnostic step is the work we do.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section section--bone2" id="team">
-  <div class="wrap">
-    <p class="eyebrow">Team</p>
-    <h2>Who you'd be working with</h2>
-    <p class="lede">Two founders, directly on every engagement.</p>
-
-    <div class="team">
-      <div class="person">
-        <img src="charlie-held.jpg" alt="Charlie Held" width="720" height="900">
-        <p class="person-name">Charlie Held</p>
-        <p class="person-role">Co-founder, AI Strategy</p>
-        <p>Charlie leads the diagnostic framework. He studies finance at Indiana University's Kelley School of Business and completed coursework at the London School of Economics on AI strategy, management, and governance, which is the research base the firm's approach is built on. He previously co-founded and ran a residential services business with five employees and more than a hundred clients, which is where the operating instinct comes from.</p>
-        <ul class="creds">
-          <li>Finance, Kelley School of Business, Indiana University</li>
-          <li>AI strategy and governance coursework, London School of Economics</li>
-          <li>Generative AI 101 certificate, Indiana University</li>
-          <li>Real Estate Financial Modeling Bootcamp certification, Break Into CRE Academy</li>
-          <li>Co-founder, Held &amp; Ehrlich residential services</li>
-          <li>Philanthropy Chair, Phi Gamma Delta (Zeta Chapter)</li>
-        </ul>
+    <div class="acc rv" data-acc>
+      <div class="acc-item" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-idx">01</span>
+          <span class="acc-title">What we actually do</span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Before you commit budget, we tell you three things: whether AI solves the problem in front of you, which problem is worth solving first, and what it would take to be confident in that answer.</p>
+          <p>We map where time, cost, and error actually accumulate in your operation — <strong>not where a vendor says they do</strong>.</p>
+        </div></div>
       </div>
 
-      <div class="person">
-        <img src="alex-todd-website-1.jpg" alt="Alex Todd" width="720" height="900">
-        <p class="person-name">Alex Todd</p>
-        <p class="person-role">Co-founder, Real Estate</p>
-        <p>Alex leads the real estate side of the work, translating a diagnosis into the language and constraints of how property businesses actually run. He studies finance and real estate at Indiana University's Kelley School of Business, and works through the Real Estate Club on financial modeling and market research for commercial investment cases.</p>
-        <ul class="creds">
-          <li>Finance and Real Estate, Kelley School of Business, Indiana University</li>
-          <li>Real Estate Club at Indiana University</li>
-          <li>House Manager, Phi Gamma Delta (Zeta Chapter)</li>
-          <li>Eagle Scout, Boy Scouts of America</li>
-        </ul>
+      <div class="acc-item" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-idx">02</span>
+          <span class="acc-title">Why the diagnosis is the expensive part</span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Any firm can buy any AI product on the market tomorrow. What can't be bought is the time and internal expertise to tell a genuine operational fit from a well-marketed demo.</p>
+          <p>That work is expensive precisely because it's invisible. It shows up as months of a manager's attention, a pilot that quietly stalls, and a team that's harder to convince the next time around.</p>
+        </div></div>
+      </div>
+
+      <div class="acc-item" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-idx">03</span>
+          <span class="acc-title">When we'll tell you not to buy anything</span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Sometimes the honest answer is that it's a process problem, and no model will fix it. <strong>We'd rather tell you that early than sell you a project.</strong></p>
+        </div></div>
+      </div>
+
+      <div class="acc-item" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-idx">04</span>
+          <span class="acc-title">Who we work with</span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Real estate operators, property managers, and owner-operated businesses without an internal technology team — who can't afford to absorb the cost of finding out an AI tool doesn't work.</p>
+        </div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--ink on-ink" id="contact">
+<!-- ================= EVIDENCE ================= -->
+<section id="evidence">
   <div class="wrap">
-    <p class="eyebrow">Contact</p>
-    <h2>Start with a conversation, not a contract.</h2>
-    <p class="lede" style="color:#C4CDD4">We're building our first engagements now.</p>
-    <p class="muted" style="max-width:60ch;margin-top:1.1rem">Held &amp; Todd Group is an early-stage advisory. We'd rather be straight about that than pretend otherwise: what it means in practice is that both founders work directly on every engagement, the book stays small, and we have every incentive to get the diagnosis right. If you're weighing an AI decision and want a second read on it, we're glad to talk, at no cost and no obligation.</p>
+    <div class="sec-head rv">
+      <span class="eyebrow">02 — Evidence</span>
+      <h2>Same technology. Very different outcomes.</h2>
+      <p>Three public deployments, plotted by how well the problem was diagnosed before the tool was built. Select a point to read the case.</p>
+    </div>
 
-    <div class="contact-grid">
+    <div class="gauge rv">
+      <div class="gauge-scale"><span>Poorly diagnosed</span><span>Well diagnosed</span></div>
+      <div class="gauge-track">
+        <div class="gauge-line"></div>
+        <div class="gauge-ticks" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <button class="gnode n-poor" style="left:9%"  data-target="c1" aria-label="Zillow Offers — poorly diagnosed"></button>
+        <button class="gnode n-mid"  style="left:53%" data-target="c2" aria-label="Klarna — partly diagnosed"></button>
+        <button class="gnode n-good" style="left:91%" data-target="c3" aria-label="Morgan Stanley — well diagnosed"></button>
+      </div>
+    </div>
+
+    <div class="acc rv" data-acc>
+      <div class="acc-item" id="c1" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="swatch sw-poor" aria-hidden="true"></span>
+          <span class="acc-title">
+            <span class="case-tag">When AI skips the diagnosis</span>
+            Zillow Offers
+          </span>
+          <span class="metric">$500M+ write-down</span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>In 2021 Zillow shut down its AI-powered home-buying arm after its pricing model systematically overestimated home values — a write-down of more than $500 million, and significant layoffs.</p>
+          <p>The model was sophisticated. <strong>The failure was strategic.</strong> It was scaled before anyone stress-tested the assumptions underneath it, in a market moving faster than it could adapt.</p>
+        </div></div>
+      </div>
+
+      <div class="acc-item" id="c2" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="swatch sw-mid" aria-hidden="true"></span>
+          <span class="acc-title">
+            <span class="case-tag">Right tool, wrong scope</span>
+            Klarna
+          </span>
+          <span class="metric">Gains, then a walk-back</span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Klarna's AI support assistant handled 2.3 million chats in its first month, cut average resolution time from roughly 11 minutes to 2, and drove a reported 25% drop in repeat contacts. Real gains.</p>
+          <p>But by 2025 the company acknowledged it had leaned too far on cost, saw quality slip, and began rehiring human agents. <strong>Strong technology, scoped past the point where it fit.</strong></p>
+        </div></div>
+      </div>
+
+      <div class="acc-item" id="c3" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="swatch sw-good" aria-hidden="true"></span>
+          <span class="acc-title">
+            <span class="case-tag">Narrow problem, compounding return</span>
+            Morgan Stanley
+          </span>
+          <span class="metric">98% adoption</span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Morgan Stanley pointed AI at one well-defined task: letting advisors search the firm's own research library in plain language.</p>
+          <p>Document retrieval efficiency moved from roughly 20% to 80%, a companion tool now saves advisors about half an hour per client meeting, and adoption passed 98% of advisor teams — <strong>because a human still reviews everything that reaches a client.</strong></p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="takeaway rv">
+      <p>The technology across these three cases was broadly comparable. The outcomes were not. What separated them was whether the problem was diagnosed properly before the tool was built. <strong>That diagnostic step is the work we do.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">03 — Team</span>
+      <h2>Two founders, directly on every engagement.</h2>
+    </div>
+
+    <div class="acc rv" data-acc>
+      <div class="acc-item" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <img class="team-photo" src="charlie-held.jpg" alt="Charlie Held">
+          <span class="acc-title">
+            <span class="case-tag">Co-founder, AI Strategy</span>
+            Charlie Held
+          </span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Charlie leads the diagnostic framework. He studies finance at Indiana University's Kelley School of Business and completed coursework at the London School of Economics on AI strategy, management, and governance — the research base the firm's approach is built on. He previously co-founded and ran a residential services business with five employees and more than a hundred clients, which is where the operating instinct comes from.</p>
+          <ul class="creds">
+            <li>Finance, Kelley School of Business, Indiana University</li>
+            <li>AI strategy and governance coursework, London School of Economics</li>
+            <li>Generative AI 101 certificate, Indiana University</li>
+            <li>Real Estate Financial Modeling Bootcamp, Break Into CRE Academy</li>
+            <li>Co-founder, Held &amp; Ehrlich residential services</li>
+            <li>Philanthropy Chair, Phi Gamma Delta (Zeta Chapter)</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="acc-item" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <img class="team-photo" src="alex-todd-website-1.jpg" alt="Alex Todd">
+          <span class="acc-title">
+            <span class="case-tag">Co-founder, Real Estate</span>
+            Alex Todd
+          </span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Alex leads the real estate side of the work, translating a diagnosis into the language and constraints of how property businesses actually run. He studies finance and real estate at Indiana University's Kelley School of Business, and works through the Real Estate Club on financial modeling and market research for commercial investment cases.</p>
+          <ul class="creds">
+            <li>Finance and Real Estate, Kelley School of Business, Indiana University</li>
+            <li>Real Estate Club at Indiana University</li>
+            <li>House Manager, Phi Gamma Delta (Zeta Chapter)</li>
+            <li>Eagle Scout, Boy Scouts of America</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">04 — Contact</span>
+      <h2>Start with a conversation, not a contract.</h2>
+      <p>We're building our first engagements now. If you're weighing an AI decision and want a second read on it, we're glad to talk — no cost, no obligation.</p>
+    </div>
+
+    <div class="acc rv" data-acc>
+      <div class="acc-item" data-open="false">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-idx">†</span>
+          <span class="acc-title">Where we are as a firm</span>
+          <span class="acc-sign" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <p>Held &amp; Todd Group is an early-stage advisory. We'd rather be straight about that than pretend otherwise. In practice it means both founders work directly on every engagement, the book stays small, and <strong>we have every incentive to get the diagnosis right.</strong></p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="contact-grid rv">
       <div class="card">
-        <p class="who">Charlie Held</p>
+        <h3>Charlie Held</h3>
+        <div class="role">Co-founder, AI Strategy</div>
         <a href="mailto:charlieh01@heldtoddgroup.com">charlieh01@heldtoddgroup.com</a>
         <a href="https://www.linkedin.com/in/charlie-held0/" target="_blank" rel="noopener">LinkedIn →</a>
       </div>
       <div class="card">
-        <p class="who">Alex Todd</p>
+        <h3>Alex Todd</h3>
+        <div class="role">Co-founder, Real Estate</div>
         <a href="mailto:alextodd@heldtoddgroup.com">alextodd@heldtoddgroup.com</a>
         <a href="https://www.linkedin.com/in/william-todd-kelley-school-of-business-real-estate/" target="_blank" rel="noopener">LinkedIn →</a>
       </div>
     </div>
-
-    <div class="foot">
-      <p>Held &amp; Todd Group</p>
-      <p>Indianapolis, Indiana</p>
-    </div>
   </div>
 </section>
 
+<footer class="wrap">
+  <span class="eyebrow">Held &amp; Todd Group<br>Indianapolis, Indiana</span>
+  <a href="#top" class="eyebrow" style="text-decoration:none;color:var(--brand)">Back to top ↑</a>
+</footer>
+
 <script>
 (function(){
-  var nav = document.querySelector('.nav');
-  function setNavH(){
-    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  /* ---- accordions ---- */
+  function close(item){
+    var p = item.querySelector('.acc-panel');
+    p.style.height = p.scrollHeight + 'px';
+    requestAnimationFrame(function(){ p.style.height = '0px'; });
+    item.dataset.open = 'false';
+    item.querySelector('.acc-btn').setAttribute('aria-expanded','false');
   }
-  setNavH();
-  window.addEventListener('resize', setNavH);
-  window.addEventListener('load', setNavH);
-})();
-
-(function(){
-  var plot = document.getElementById('plot');
-  if(!plot) return;
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce || !('IntersectionObserver' in window)){ plot.classList.add('is-in'); return; }
-
-  var ticks = plot.querySelectorAll('.axis .tick');
-  var finals = [];
-  ticks.forEach(function(t){ finals.push(t.style.left); t.style.left = '0%'; });
-
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting) return;
-      plot.classList.add('is-in');
-      ticks.forEach(function(t,i){
-        setTimeout(function(){ t.style.left = finals[i]; }, 140 + i*170);
-      });
-      io.disconnect();
+  function open(item){
+    var p = item.querySelector('.acc-panel');
+    p.style.height = p.scrollHeight + 'px';
+    item.dataset.open = 'true';
+    item.querySelector('.acc-btn').setAttribute('aria-expanded','true');
+    p.addEventListener('transitionend', function h(){
+      if(item.dataset.open === 'true'){ p.style.height = 'auto'; }
+      p.removeEventListener('transitionend', h);
     });
-  },{threshold:.35});
-  io.observe(plot);
+  }
+
+  document.querySelectorAll('[data-acc]').forEach(function(group){
+    group.querySelectorAll('.acc-item').forEach(function(item){
+      item.querySelector('.acc-btn').addEventListener('click', function(){
+        var isOpen = item.dataset.open === 'true';
+        // one open at a time, per group
+        group.querySelectorAll('.acc-item[data-open="true"]').forEach(close);
+        if(!isOpen) open(item);
+        syncNodes();
+      });
+    });
+  });
+
+  /* ---- gauge nodes drive the case accordion ---- */
+  var nodes = document.querySelectorAll('.gnode');
+  nodes.forEach(function(n){
+    n.addEventListener('click', function(){
+      var item = document.getElementById(n.dataset.target);
+      if(!item) return;
+      var group = item.closest('[data-acc]');
+      var wasOpen = item.dataset.open === 'true';
+      group.querySelectorAll('.acc-item[data-open="true"]').forEach(close);
+      if(!wasOpen){
+        open(item);
+        item.scrollIntoView({behavior:'smooth', block:'center'});
+      }
+      syncNodes();
+    });
+  });
+  function syncNodes(){
+    nodes.forEach(function(n){
+      var item = document.getElementById(n.dataset.target);
+      n.dataset.active = (item && item.dataset.open === 'true') ? 'true' : 'false';
+    });
+  }
+
+  /* ---- scroll reveal ---- */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rv = document.querySelectorAll('.rv');
+  if(reduce || !('IntersectionObserver' in window)){
+    rv.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    rv.forEach(function(el){ io.observe(el); });
+  }
 })();
 </script>
 </body>
